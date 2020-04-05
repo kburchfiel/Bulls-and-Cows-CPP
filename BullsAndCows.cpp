@@ -54,9 +54,9 @@ if (x != mystnums[0] && x != mystnums[1] && x != mystnums[2])
 break;}
 }
 
-cout << "Please enter four integers, separated by a space or enter. Your goal is to guess (in the correct order) four unique numbers stored in the program.\n";
-cout << "If you guess a number correctly and it's in the right order, you will get one \"Bull.\" If you guess a number correctly but it's not in the right order, you will get one \"Cow.\"\n"; 
-cout << "Note that if you enter the same integer multiple times within the same 4-number set, the \"cow\" count may become artificially inflated. However, keep in mind that a given number will appear only once in the 4-number set.\n";
+cout << "Let's play Bulls and Cows! Please enter four unique integers, separated by a space or enter. Your goal is to guess (in the correct order) four unique numbers stored in the program.\n";
+cout << "If you guess a number correctly and it's in the right order, you will get one \"bull.\" If you guess a number correctly but it's not in the right order, you will get one \"cow.\"\n"; 
+cout << "If you want to test one number alone, you can try 'isolating' it by entering unique integers other than 0-9 for the other numbers.\n";
 cout << "You can now enter your four numbers.\n" ;
 
 while (cin)
@@ -64,6 +64,11 @@ while (cin)
     
     if (cin >> g0 >> g1 >> g2 >> g3)
     {
+//The following if-statement was added in because if the same integer was entered multiple times, the 'cows' count could become inaccurately high, which could confuse the player.
+if (g0 == g1 || g0 == g2 || g0 == g3 || g1 == g2 || g1 == g3 || g2 == g3)
+    {cout << "Please enter four unique integers.\n";
+    continue;}
+    
         if (g0 == mystnums[0])
         {bullcount++;}
         else if (g0 == mystnums[1] || g0 == mystnums[2] || g0 == mystnums[3])
@@ -71,7 +76,7 @@ while (cin)
 
 if (g1 == mystnums[1])
         {bullcount++;}
-        else if (g1 == mystnums[0] || g1 == mystnums[2] || g1 == mystnums[3])
+        else if (g1 == mystnums[0] || g1 == mystnums[2] || g1 == mystnums[3]) 
         {cowcount++;}
 
         if (g2 == mystnums[2])
@@ -119,9 +124,9 @@ break;}
 }
 
 
-cout << "Congrats, you've won! Your number of tries was " << trycount << " tries. You can now play again with a different set of numbers. Try entering your four numbers now:\n";
+cout << "Congrats, you've won! Your number of tries was " << trycount << ". You can now play again with a different set of numbers. Try entering your four guesses now:\n";
 trycount = 0;
-    }
+}
 
 
 else {
@@ -132,6 +137,7 @@ bullcount = 0;
 }
 
     }
+    
 //Code that allows users to try again if they did not correctly enter an integer:
 else {
     cin.clear();
